@@ -20,6 +20,9 @@ function fib2 (n) {
 }
 
 function fib (n) {
+  if (n <= 1)
+    return n;
+
   const indexes = [0, 1];
 
   for (let i = 2; i < n; i++) {

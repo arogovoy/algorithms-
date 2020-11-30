@@ -28,22 +28,32 @@ function readLine (line) {
   }
 }
 
-function gcd (a, b) {
+function gcd2 (a, b) {
   if (b < a) {
     let t = b;
     b = a;
     a = t; //a is always min
   }
 
-  let result = 1, i = 0;
-  while (i < a && result === 1) {
-    if (!(a / (a - i) % 1) && !(b / (a - i) % 1)) {
-      result = a - i;
-    }
-
-    i++;
+  let result = a;
+  while (result > 1 && (a / result % 1) || (b / result % 1)) {
+    --result;
   }
   return result;
+}
+
+function gcd (a, b) {
+  if (b > a) {
+    let t = a;
+    a = b;
+    b = t; //b is always min
+  }
+
+  if (b === 0) {
+    return a;
+  }
+
+  return gcd(a % b, b);
 }
 
 module.exports = gcd;
